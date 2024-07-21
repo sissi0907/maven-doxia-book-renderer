@@ -22,7 +22,7 @@ jobs:
       - name: Check
         uses: actions/checkout@v3
         with:
-          ref: 3e41cf0b8df9d410c8284cbbb07623b1c84cdff
+          ref: 33e41cf0b8df9d410c8284cbbb07623b1c84cdff
   
       - name: Test with Maven 
         run: | 
