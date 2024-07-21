@@ -1,0 +1,36 @@
+name: Reproduce Flaky Tests
+
+on: [push, pull_request]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Set up JDK 8
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '8'
+          
+      # - name: maven clean install 
+      #   run: mvn clean install -Dcheckstyle.skip -Drat.skip -U
+        
+      # - name: Compile Module
+      #   run: mvn test-compile -am -Dcheckstyle.skip -Drat.skip -U
+      - name: Check
+        uses: actions/checkout@v3
+        with:
+          ref: 3e41cf0b8df9d410c8284cbbb07623b1c84cdff
+  
+      - name: Test with Maven 
+        run: | 
+              for i in {1..100}; do mvn test -Dtest=org.apache.maven.doxia.book.services.renderer.docbook.DocBookBookSinkTest -fae>>test_log.txt; done
+              echo "Maven tests completed." 
+      - name: Upload Test Log 
+        if: always() 
+        uses: actions/upload-artifact@v2 
+        with: 
+          name: test_log 
+          path: test_log.txt
