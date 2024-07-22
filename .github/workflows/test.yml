@@ -26,7 +26,7 @@ jobs:
   
       - name: Test with Maven 
         run: | 
-              for i in {1..100}; do mvn test -Dtest=org.apache.maven.doxia.book.services.renderer.docbook.DocBookBookSinkTest -fae>>test_log.txt; done
+              for i in {1..100}; do mvn test -Dtest=org.apache.maven.doxia.book.services.renderer.docbook.DocBookBookSinkTest -Drat.skip -fae>>test_log.txt; done
               echo "Maven tests completed." 
       - name: Upload Test Log 
         if: always() 
