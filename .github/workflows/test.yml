@@ -26,8 +26,8 @@ jobs:
   
       - name: Test with Maven 
         run: | 
-              for i in {1..100}; do mvn test -Dtest=org.apache.maven.doxia.book.services.renderer.docbook.DocBookBookSinkTest -Drat.skip -fae
-              # >>test_log_DOXIATOOLS-64.txt || echo "Test iteration $i failed">>test_log_DOXIATOOLS-64.txt; done
+              for i in {1..100}; do mvn test -Dtest=org.apache.maven.doxia.book.services.renderer.docbook.DocBookBookSinkTest -Drat.skip -fae;done
+      # >>test_log_DOXIATOOLS-64.txt || echo "Test iteration $i failed">>test_log_DOXIATOOLS-64.txt; done
               
       # - name: Upload Test Log 
       #   if: always() 
